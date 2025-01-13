@@ -80,7 +80,7 @@ test_pipeline = [
 ]
 
 dataset_type = 'CocoDataset'
-data_root = 'data'
+data_root = 'data/'
 classes = ('None',)
 img_prefix = 'image_dataset/coco/'
 train_dataloader = dict(
@@ -117,7 +117,7 @@ test_dataloader = val_dataloader
 
 val_evaluator = dict(
     type='CocoMetric',
-    ann_file=img_prefix + 'val.json',
+    ann_file=data_root + img_prefix + 'val.json',
     metric='bbox',
     format_only=False,
     backend_args=backend_args)
