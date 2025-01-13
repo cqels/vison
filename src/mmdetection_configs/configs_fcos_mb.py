@@ -92,7 +92,7 @@ train_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file=data_root + 'train.json',
+        ann_file='train.json',
         data_prefix=dict(img=img_prefix),
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
         pipeline=train_pipeline,
@@ -107,7 +107,7 @@ val_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file=data_root + 'val.json',
+        ann_file='val.json',
         data_prefix=dict(img=img_prefix),
         test_mode=True,
         pipeline=test_pipeline,
