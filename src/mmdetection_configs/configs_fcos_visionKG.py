@@ -82,7 +82,7 @@ test_pipeline = [
 dataset_type = 'CocoDataset'
 data_root = 'data/'
 classes = ('None',)
-
+img_prefix = 'image_dataset/coco/'
 train_dataloader = dict(
     batch_size=2,
     num_workers=2,
@@ -93,7 +93,7 @@ train_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         ann_file='mixedDatasets/train.json',
-        data_prefix=dict(img='image_dataset/coco/'),
+        data_prefix=dict(img=img_prefix),
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
         pipeline=train_pipeline,
         metainfo=dict(classes=classes),
@@ -108,7 +108,7 @@ val_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         ann_file='mixedDatasets/val.json',
-        data_prefix=dict(img='image_dataset/coco/'),
+        data_prefix=dict(img=img_prefix),
         test_mode=True,
         pipeline=test_pipeline,
         metainfo=dict(classes=classes),

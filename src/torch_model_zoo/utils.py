@@ -215,7 +215,7 @@ def anno_filter(anno_path, filter_cat_nms):
     return filter_annos
 
 
-def prepare_for_training(path_to_anno_mixedDatasets, anno, filter_cat_nms=None):
+def prepare_for_training(path_to_anno_mixedDatasets, anno, existed_data=None, filter_cat_nms=None):
     os.makedirs(os.path.abspath(os.path.join(path_to_anno_mixedDatasets, "..")), exist_ok=True)
     save_anno(anno, path_to_anno_mixedDatasets)
     if filter_cat_nms:
@@ -223,7 +223,17 @@ def prepare_for_training(path_to_anno_mixedDatasets, anno, filter_cat_nms=None):
         if filter_result:
             anno = filter_result
             save_anno(anno, path_to_anno_mixedDatasets)
-    check_download_images(anno["images"])
+    if existed_data:
+        for i in anno['images']:
+            img_path = os.path.join(existed_data, i['file_name'])
+            if os.path.exists(img_path):
+                i['image_path'] = img_path
+            else:
+                print("The image path is not exist, please check the path: ", img_path)
+                import sys
+                sys.exit(1)
+    else:
+        check_download_images(anno["images"])
     nms_categories = [category['name'] for category in anno['categories']]
     num_categories = len(nms_categories)
 
