@@ -7,7 +7,7 @@ import torchvision
 from torch import nn, Tensor
 from torchvision.transforms import functional as F
 from torchvision.transforms import transforms as T
-from torchvision.transforms import functional_pil as F_pil
+#from torchvision.transforms import functional_pil as F_pil
 
 try:
     import accimage
